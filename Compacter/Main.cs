@@ -6,5 +6,10 @@ namespace Compacter
         {
             InitializeComponent();
         }
+
+        private void tsbOpen_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
