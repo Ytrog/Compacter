@@ -3,7 +3,7 @@ namespace Compacter
     public partial class Main : Form
     {
 
-        private FolderManager folderManager;
+        private FolderManager? folderManager;
 
         public Main()
         {
@@ -14,6 +14,15 @@ namespace Compacter
         {
             if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK) {
                 folderManager = new() { Path =  folderBrowserDialog1.SelectedPath };
+                folderManager.Init();
+                if (folderManager.Initialized)
+                {
+
+                }
+                else
+                {
+                    throw new Exception($"{folderManager.Path} could not be enumerated");
+                }
             }
         }
     }
