@@ -9,10 +9,5 @@ namespace Compacter
     internal class FolderManager
     {
         public required string Path { get; init; }
-
-        public FolderManager(string path)
-        {
-            Path = path;
-        }
     }
 }
