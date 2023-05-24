@@ -91,6 +91,7 @@
             tsbAnalyze.Name = "tsbAnalyze";
             tsbAnalyze.Size = new Size(52, 22);
             tsbAnalyze.Text = "Analyze";
+            tsbAnalyze.Click += tsbAnalyze_Click;
             // 
             // tsbCompress
             // 

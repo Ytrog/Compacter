@@ -12,8 +12,9 @@ namespace Compacter
 
         private void tsbOpen_Click(object sender, EventArgs e)
         {
-            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK) {
-                folderManager = new() { Path =  folderBrowserDialog1.SelectedPath };
+            if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
+            {
+                folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
                 folderManager.Init();
                 if (folderManager.Initialized)
                 {
@@ -31,6 +32,14 @@ namespace Compacter
         {
             tsbAnalyze.Enabled = enable;
             tsbCompress.Enabled = enable;
+        }
+
+        private void tsbAnalyze_Click(object sender, EventArgs e)
+        {
+            if (folderManager != null && folderManager.Initialized)
+            {
+                folderManager.Analyze();
+            }
         }
     }
 }

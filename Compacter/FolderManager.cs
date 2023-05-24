@@ -26,5 +26,18 @@
             }
             else { throw new InvalidOperationException(); }
         }
+
+        internal void Analyze()
+        {
+            if (!Initialized || _fileItems == null)
+            {
+                throw new InvalidOperationException("Not initialized");
+            }
+
+            foreach (var fi in _fileItems)
+            {
+                fi.Analyze(); // TODO not in main thread
+            }
+        }
     }
 }
