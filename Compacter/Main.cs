@@ -17,13 +17,20 @@ namespace Compacter
                 folderManager.Init();
                 if (folderManager.Initialized)
                 {
-
+                    SetEnabledStatus(true);
                 }
                 else
                 {
+                    SetEnabledStatus(false);
                     throw new Exception($"{folderManager.Path} could not be enumerated");
                 }
             }
+        }
+
+        private void SetEnabledStatus(bool enable)
+        {
+            tsbAnalyze.Enabled = enable;
+            tsbCompress.Enabled = enable;
         }
     }
 }
