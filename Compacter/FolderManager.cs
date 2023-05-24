@@ -5,7 +5,7 @@
         public required string Path { get; init; }
         private DirectoryInfo? _folder;
         private const string _pattern = "*.*";
-        private List<FileItem> _fileItems;
+        private List<FileItem>? _fileItems;
         public bool Initialized { get; private set; } = false;
 
         public FolderManager()
