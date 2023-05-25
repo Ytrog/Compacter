@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compacter", "Compacter\Compacter.csproj", "{5FE0733B-66B0-466F-95DC-48591B75B709}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Compacter", "Compacter\Compacter.csproj", "{5FE0733B-66B0-466F-95DC-48591B75B709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compacter.Test", "Compacter.Test\Compacter.Test.csproj", "{87EC016A-9AFC-441D-8634-159022448320}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5FE0733B-66B0-466F-95DC-48591B75B709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FE0733B-66B0-466F-95DC-48591B75B709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FE0733B-66B0-466F-95DC-48591B75B709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87EC016A-9AFC-441D-8634-159022448320}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87EC016A-9AFC-441D-8634-159022448320}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87EC016A-9AFC-441D-8634-159022448320}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87EC016A-9AFC-441D-8634-159022448320}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
