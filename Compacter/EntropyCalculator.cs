@@ -9,7 +9,7 @@ namespace Compacter
     /// <summary>
     /// Calculate entropy. Inspired by: https://github.com/merces/entropy/blob/master/entropy.cpp
     /// </summary>
-    internal static class EntropyCalculator
+    public static class EntropyCalculator
     {
         public static double Calculate(FileInfo fileInfo)
         {
