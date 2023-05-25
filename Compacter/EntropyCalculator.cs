@@ -22,7 +22,7 @@ namespace Compacter
         }
 
         /// <summary>
-        /// TODO How to test
+        /// Calculate the Shannon entropy of a file
         /// </summary>
         /// <param name="fileLength">The total length of the file</param>
         /// <param name="count">The statistics per byte (it is an array of length 0xFF with the count per byte value)</param>
@@ -34,7 +34,7 @@ namespace Compacter
 
             for (int i = 0; i < 0xFF; i++)
             {
-                temp = count[i] / fileLength;
+                temp = ((double)count[i]) / fileLength;
 
                 if (temp > 0)
                 {
@@ -45,6 +45,11 @@ namespace Compacter
             return entropy;
         }
 
+        /// <summary>
+        /// Count the bytes in a file
+        /// </summary>
+        /// <param name="fileInfo">The file</param>
+        /// <returns></returns>
         public static uint[] CountBytes(FileInfo fileInfo)
         {
             uint[] byteCount = new uint[0xFF]; // create an array with the count for each byte value (from 0x00 to 0xFF)

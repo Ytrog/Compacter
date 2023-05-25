@@ -36,7 +36,7 @@ namespace Compacter.Test
 
             double actual = EntropyCalculator.CalculateEntropy(count.Length, count);
 
-            Assert.AreEqual((byte)expected, actual);
+            Assert.AreEqual(expected, actual, 0.01);
         }
 
         /// <summary>
