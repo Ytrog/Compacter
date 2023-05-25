@@ -16,19 +16,25 @@ namespace Compacter
 
             uint[] count = CountBytes(fileInfo);
 
-            double entropy = CalculateEntropy(fileInfo, count);
+            double entropy = CalculateEntropy(fileInfo.Length, count);
 
             return entropy;
         }
 
-        private static double CalculateEntropy(FileInfo fileInfo, uint[] count)
+        /// <summary>
+        /// TODO How to test
+        /// </summary>
+        /// <param name="fileLength">The total length of the file</param>
+        /// <param name="count">The statistics per byte (it is an array of length 0xFF with the count per byte value)</param>
+        /// <returns></returns>
+        private static double CalculateEntropy(long fileLength, uint[] count)
         {
             double entropy = 0;
             double temp;
 
             for (int i = 0; i < 0xFF; i++)
             {
-                temp = count[i] / fileInfo.Length;
+                temp = count[i] / fileLength;
 
                 if (temp > 0)
                 {
