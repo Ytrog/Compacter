@@ -21,7 +21,6 @@ namespace Compacter
             SizeOnDisk = GetSizeOnDisk(fileInfo);
 
             Compressed = fileInfo.Attributes.HasFlag(FileAttributes.Compressed);
-            // TODO entropy
 
             Entropy = CalculateEntropy(fileInfo);
 
@@ -29,7 +28,7 @@ namespace Compacter
 
         private double CalculateEntropy(FileInfo fileInfo)
         {
-            return default; // TODO implement
+            return EntropyCalculator.Calculate(fileInfo);
         }
 
         /// <summary>
