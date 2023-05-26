@@ -12,7 +12,7 @@ namespace Compacter.Test
         public void CalculateEntropyAllSame()
         {
             long length = 100;
-            uint[] count = new uint[0xFF];
+            uint[] count = new uint[256];
             count[42] = 100;
 
             double expected = 0;
@@ -25,7 +25,7 @@ namespace Compacter.Test
         [TestMethod]
         public void CalculateEntropyAllDifferent()
         {
-            uint[] count = new uint[0xFF];
+            uint[] count = new uint[256];
             
             for (int i = 0; i < count.Length; i++) 
             {
@@ -46,7 +46,7 @@ namespace Compacter.Test
         [Ignore]
         public void GenerateFile()
         {
-            byte[] buffer = new byte[0xFF];
+            byte[] buffer = new byte[256];
 
             for(int i = 0;i < buffer.Length; i++)
             {

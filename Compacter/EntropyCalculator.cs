@@ -25,14 +25,14 @@ namespace Compacter
         /// Calculate the Shannon entropy of a file
         /// </summary>
         /// <param name="fileLength">The total length of the file</param>
-        /// <param name="count">The statistics per byte (it is an array of length 0xFF with the count per byte value)</param>
+        /// <param name="count">The statistics per byte (it is an array of length 256 with the count per byte value)</param>
         /// <returns></returns>
         public static double CalculateEntropy(long fileLength, uint[] count)
         {
             double entropy = 0;
             double temp;
 
-            for (int i = 0; i < 0xFF; i++)
+            for (int i = 0; i < count.Length; i++)
             {
                 temp = ((double)count[i]) / fileLength;
 
@@ -52,7 +52,7 @@ namespace Compacter
         /// <returns></returns>
         public static uint[] CountBytes(FileInfo fileInfo)
         {
-            uint[] byteCount = new uint[0xFF]; // create an array with the count for each byte value (from 0x00 to 0xFF)
+            uint[] byteCount = new uint[256]; // create an array with the count for each byte value (from 0x00 to 256)
 
             // TODO count the bytes
             // TODO error handling
