@@ -55,6 +55,22 @@ namespace Compacter
             uint[] byteCount = new uint[0xFF]; // create an array with the count for each byte value (from 0x00 to 0xFF)
 
             // TODO count the bytes
+            // TODO error handling
+            // TODO LATER measure performance and tune
+#warning no error handling 
+            using (var stream = fileInfo.OpenRead())
+            {
+                int currentByte = default;
+                do
+                {
+                    currentByte = stream.ReadByte();
+                    if (currentByte >= 0)
+                    {
+                        byteCount[currentByte]++;
+                    }
+
+                } while (currentByte != -1);
+            }
 
             return byteCount;
         }
