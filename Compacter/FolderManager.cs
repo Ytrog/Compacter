@@ -7,6 +7,7 @@
         private const string _pattern = "*.*";
         private List<FileItem>? _fileItems;
         public bool Initialized { get; private set; } = false;
+        internal List<FileItem>? FileItems { get => _fileItems; set => _fileItems = value; }
 
         public FolderManager()
         {
@@ -20,7 +21,7 @@
                 _folder = new DirectoryInfo(Path);
 
                 var files = _folder.EnumerateFiles(_pattern, new EnumerationOptions { RecurseSubdirectories = true, MaxRecursionDepth = 4 });
-                _fileItems = files.Select(f => new FileItem { Path = f.FullName }).ToList();
+                FileItems = files.Select(f => new FileItem { Path = f.FullName }).ToList();
 
                 Initialized = true;
             }
@@ -29,12 +30,13 @@
 
         internal void Analyze()
         {
-            if (!Initialized || _fileItems == null)
+            
+            if (!Initialized || FileItems == null)
             {
                 throw new InvalidOperationException("Not initialized");
             }
 
-            foreach (var fi in _fileItems)
+            foreach (var fi in FileItems)
             {
                 fi.Analyze(); // TODO not in main thread
             }

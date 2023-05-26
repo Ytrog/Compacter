@@ -36,10 +36,31 @@ namespace Compacter
 
         private void tsbAnalyze_Click(object sender, EventArgs e)
         {
-            if (folderManager != null && folderManager.Initialized)
+            if (folderManager != null && folderManager.Initialized && folderManager.FileItems != null)
             {
                 folderManager.Analyze();
+                FillDataSource(folderManager.FileItems);
             }
+        }
+
+        private void FillDataSource(IEnumerable<FileItem> files)
+        {
+            AnalysisResult.ResultDataTable table = (AnalysisResult.ResultDataTable)resultBindingSource.DataSource;
+            table.Rows.Clear();
+            foreach (FileItem file in files)
+            {
+                var row = table.NewResultRow();
+                row.Compressed = file.Compressed;
+                row.Entropy = file.Entropy;
+                row.SizeOnDisk = file.SizeOnDisk;
+                row.Path = file.Path;
+                table.Rows.Add(row);
+            }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            resultBindingSource.DataSource = new AnalysisResult.ResultDataTable();
         }
     }
 }

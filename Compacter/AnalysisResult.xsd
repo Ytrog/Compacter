@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AnalysisResult" targetNamespace="http://tempuri.org/AnalysisResult.xsd" xmlns:mstns="http://tempuri.org/AnalysisResult.xsd" xmlns="http://tempuri.org/AnalysisResult.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AnalysisResult" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="AnalysisResult" msprop:Generator_DataSetName="AnalysisResult">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Result" msprop:Generator_RowEvHandlerName="ResultRowChangeEventHandler" msprop:Generator_RowDeletedName="ResultRowDeleted" msprop:Generator_RowDeletingName="ResultRowDeleting" msprop:Generator_RowEvArgName="ResultRowChangeEvent" msprop:Generator_TablePropName="Result" msprop:Generator_RowChangedName="ResultRowChanged" msprop:Generator_RowChangingName="ResultRowChanging" msprop:Generator_TableClassName="ResultDataTable" msprop:Generator_RowClassName="ResultRow" msprop:Generator_TableVarName="tableResult" msprop:Generator_UserTableName="Result">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Path" msprop:Generator_ColumnPropNameInRow="Path" msprop:Generator_ColumnPropNameInTable="PathColumn" msprop:Generator_ColumnVarNameInTable="columnPath" msprop:Generator_UserColumnName="Path" type="xs:string" minOccurs="0" />
+              <xs:element name="SizeOnDisk" msprop:Generator_ColumnPropNameInRow="SizeOnDisk" msprop:Generator_ColumnPropNameInTable="SizeOnDiskColumn" msprop:Generator_ColumnVarNameInTable="columnSizeOnDisk" msprop:Generator_UserColumnName="SizeOnDisk" type="xs:long" minOccurs="0" />
+              <xs:element name="Entropy" msprop:Generator_ColumnPropNameInRow="Entropy" msprop:Generator_ColumnPropNameInTable="EntropyColumn" msprop:Generator_ColumnVarNameInTable="columnEntropy" msprop:Generator_UserColumnName="Entropy" type="xs:double" minOccurs="0" />
+              <xs:element name="Compressed" msprop:Generator_ColumnPropNameInRow="Compressed" msprop:Generator_ColumnPropNameInTable="CompressedColumn" msprop:Generator_ColumnVarNameInTable="columnCompressed" msprop:Generator_UserColumnName="Compressed" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

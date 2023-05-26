@@ -28,16 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             toolStripContainer1 = new ToolStripContainer();
+            dgvAnalysisResult = new DataGridView();
+            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            resultBindingSource = new BindingSource(components);
             toolStrip1 = new ToolStrip();
             tsbOpen = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAnalysisResult).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)resultBindingSource).BeginInit();
             toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,6 +56,7 @@
             // 
             // toolStripContainer1.ContentPanel
             // 
+            toolStripContainer1.ContentPanel.Controls.Add(dgvAnalysisResult);
             toolStripContainer1.ContentPanel.Size = new Size(800, 425);
             toolStripContainer1.Dock = DockStyle.Fill;
             toolStripContainer1.Location = new Point(0, 0);
@@ -58,13 +69,63 @@
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
             // 
+            // dgvAnalysisResult
+            // 
+            dgvAnalysisResult.AllowUserToAddRows = false;
+            dgvAnalysisResult.AllowUserToDeleteRows = false;
+            dgvAnalysisResult.AutoGenerateColumns = false;
+            dgvAnalysisResult.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvAnalysisResult.Columns.AddRange(new DataGridViewColumn[] { pathDataGridViewTextBoxColumn, sizeOnDiskDataGridViewTextBoxColumn, entropyDataGridViewTextBoxColumn, compressedDataGridViewCheckBoxColumn });
+            dgvAnalysisResult.DataSource = resultBindingSource;
+            dgvAnalysisResult.Dock = DockStyle.Fill;
+            dgvAnalysisResult.Location = new Point(0, 0);
+            dgvAnalysisResult.Name = "dgvAnalysisResult";
+            dgvAnalysisResult.ReadOnly = true;
+            dgvAnalysisResult.RowTemplate.Height = 25;
+            dgvAnalysisResult.Size = new Size(800, 425);
+            dgvAnalysisResult.TabIndex = 0;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            pathDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            pathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sizeOnDiskDataGridViewTextBoxColumn
+            // 
+            sizeOnDiskDataGridViewTextBoxColumn.DataPropertyName = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.HeaderText = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.Name = "sizeOnDiskDataGridViewTextBoxColumn";
+            sizeOnDiskDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // entropyDataGridViewTextBoxColumn
+            // 
+            entropyDataGridViewTextBoxColumn.DataPropertyName = "Entropy";
+            entropyDataGridViewTextBoxColumn.HeaderText = "Entropy";
+            entropyDataGridViewTextBoxColumn.Name = "entropyDataGridViewTextBoxColumn";
+            entropyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // compressedDataGridViewCheckBoxColumn
+            // 
+            compressedDataGridViewCheckBoxColumn.DataPropertyName = "Compressed";
+            compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
+            compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
+            compressedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // resultBindingSource
+            // 
+            resultBindingSource.DataMember = "Result";
+            resultBindingSource.DataSource = typeof(AnalysisResult);
+            // 
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(257, 25);
+            toolStrip1.Size = new Size(226, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -116,10 +177,14 @@
             Controls.Add(toolStripContainer1);
             Name = "Main";
             Text = "Compacter";
+            Load += Main_Load;
+            toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.PerformLayout();
             toolStripContainer1.ResumeLayout(false);
             toolStripContainer1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvAnalysisResult).EndInit();
+            ((System.ComponentModel.ISupportInitialize)resultBindingSource).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             ResumeLayout(false);
@@ -134,5 +199,11 @@
         private ToolStripButton tsbAnalyze;
         private ToolStripButton tsbCompress;
         private FolderBrowserDialog folderBrowserDialog1;
+        private DataGridView dgvAnalysisResult;
+        private BindingSource resultBindingSource;
+        private DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sizeOnDiskDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn entropyDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn compressedDataGridViewCheckBoxColumn;
     }
 }
