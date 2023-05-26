@@ -279,6 +279,8 @@ namespace Compacter {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ResultDataTable : global::System.Data.TypedTableBase<ResultRow> {
             
+            private global::System.Data.DataColumn columnAnalyzed;
+            
             private global::System.Data.DataColumn columnPath;
             
             private global::System.Data.DataColumn columnSizeOnDisk;
@@ -318,6 +320,14 @@ namespace Compacter {
             protected ResultDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn AnalyzedColumn {
+                get {
+                    return this.columnAnalyzed;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -389,9 +399,10 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ResultRow AddResultRow(string Path, long SizeOnDisk, double Entropy, bool Compressed) {
+            public ResultRow AddResultRow(bool Analyzed, string Path, long SizeOnDisk, double Entropy, bool Compressed) {
                 ResultRow rowResultRow = ((ResultRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        Analyzed,
                         Path,
                         SizeOnDisk,
                         Entropy,
@@ -418,6 +429,7 @@ namespace Compacter {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
+                this.columnAnalyzed = base.Columns["Analyzed"];
                 this.columnPath = base.Columns["Path"];
                 this.columnSizeOnDisk = base.Columns["SizeOnDisk"];
                 this.columnEntropy = base.Columns["Entropy"];
@@ -427,6 +439,8 @@ namespace Compacter {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
+                this.columnAnalyzed = new global::System.Data.DataColumn("Analyzed", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAnalyzed);
                 this.columnPath = new global::System.Data.DataColumn("Path", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPath);
                 this.columnSizeOnDisk = new global::System.Data.DataColumn("SizeOnDisk", typeof(long), null, global::System.Data.MappingType.Element);
@@ -577,6 +591,22 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool Analyzed {
+                get {
+                    try {
+                        return ((bool)(this[this.tableResult.AnalyzedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Analyzed\' in table \'Result\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResult.AnalyzedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Path {
                 get {
                     try {
@@ -637,6 +667,18 @@ namespace Compacter {
                 set {
                     this[this.tableResult.CompressedColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsAnalyzedNull() {
+                return this.IsNull(this.tableResult.AnalyzedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetAnalyzedNull() {
+                this[this.tableResult.AnalyzedColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

@@ -9,10 +9,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AnalysisResult.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DesignData Include="AnalysisResult.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AnalysisResult.Designer.cs</LastGenOutput>
+    </DesignData>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AlphaFS" Version="2.2.6" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AnalysisResult.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AnalysisResult.xsd</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

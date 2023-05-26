@@ -32,10 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             toolStripContainer1 = new ToolStripContainer();
             dgvAnalysisResult = new DataGridView();
-            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             resultBindingSource = new BindingSource(components);
             toolStrip1 = new ToolStrip();
             tsbOpen = new ToolStripButton();
@@ -43,6 +39,11 @@
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            Analyzed = new DataGridViewCheckBoxColumn();
+            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
@@ -75,7 +76,7 @@
             dgvAnalysisResult.AllowUserToDeleteRows = false;
             dgvAnalysisResult.AutoGenerateColumns = false;
             dgvAnalysisResult.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAnalysisResult.Columns.AddRange(new DataGridViewColumn[] { pathDataGridViewTextBoxColumn, sizeOnDiskDataGridViewTextBoxColumn, entropyDataGridViewTextBoxColumn, compressedDataGridViewCheckBoxColumn });
+            dgvAnalysisResult.Columns.AddRange(new DataGridViewColumn[] { Analyzed, pathDataGridViewTextBoxColumn, sizeOnDiskDataGridViewTextBoxColumn, entropyDataGridViewTextBoxColumn, compressedDataGridViewCheckBoxColumn });
             dgvAnalysisResult.DataSource = resultBindingSource;
             dgvAnalysisResult.Dock = DockStyle.Fill;
             dgvAnalysisResult.Location = new Point(0, 0);
@@ -84,35 +85,6 @@
             dgvAnalysisResult.RowTemplate.Height = 25;
             dgvAnalysisResult.Size = new Size(800, 425);
             dgvAnalysisResult.TabIndex = 0;
-            // 
-            // pathDataGridViewTextBoxColumn
-            // 
-            pathDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            pathDataGridViewTextBoxColumn.HeaderText = "Path";
-            pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            pathDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sizeOnDiskDataGridViewTextBoxColumn
-            // 
-            sizeOnDiskDataGridViewTextBoxColumn.DataPropertyName = "SizeOnDisk";
-            sizeOnDiskDataGridViewTextBoxColumn.HeaderText = "SizeOnDisk";
-            sizeOnDiskDataGridViewTextBoxColumn.Name = "sizeOnDiskDataGridViewTextBoxColumn";
-            sizeOnDiskDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // entropyDataGridViewTextBoxColumn
-            // 
-            entropyDataGridViewTextBoxColumn.DataPropertyName = "Entropy";
-            entropyDataGridViewTextBoxColumn.HeaderText = "Entropy";
-            entropyDataGridViewTextBoxColumn.Name = "entropyDataGridViewTextBoxColumn";
-            entropyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // compressedDataGridViewCheckBoxColumn
-            // 
-            compressedDataGridViewCheckBoxColumn.DataPropertyName = "Compressed";
-            compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
-            compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
-            compressedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // resultBindingSource
             // 
@@ -169,6 +141,42 @@
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             folderBrowserDialog1.ShowNewFolderButton = false;
             // 
+            // Analyzed
+            // 
+            Analyzed.DataPropertyName = "Analyzed";
+            Analyzed.HeaderText = "Analyzed";
+            Analyzed.Name = "Analyzed";
+            Analyzed.ReadOnly = true;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            pathDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            pathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sizeOnDiskDataGridViewTextBoxColumn
+            // 
+            sizeOnDiskDataGridViewTextBoxColumn.DataPropertyName = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.HeaderText = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.Name = "sizeOnDiskDataGridViewTextBoxColumn";
+            sizeOnDiskDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // entropyDataGridViewTextBoxColumn
+            // 
+            entropyDataGridViewTextBoxColumn.DataPropertyName = "Entropy";
+            entropyDataGridViewTextBoxColumn.HeaderText = "Entropy";
+            entropyDataGridViewTextBoxColumn.Name = "entropyDataGridViewTextBoxColumn";
+            entropyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // compressedDataGridViewCheckBoxColumn
+            // 
+            compressedDataGridViewCheckBoxColumn.DataPropertyName = "Compressed";
+            compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
+            compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
+            compressedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -201,6 +209,7 @@
         private FolderBrowserDialog folderBrowserDialog1;
         private DataGridView dgvAnalysisResult;
         private BindingSource resultBindingSource;
+        private DataGridViewCheckBoxColumn Analyzed;
         private DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn sizeOnDiskDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn entropyDataGridViewTextBoxColumn;

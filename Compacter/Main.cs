@@ -16,9 +16,10 @@ namespace Compacter
             {
                 folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
                 folderManager.Init();
-                if (folderManager.Initialized)
+                if (folderManager.Initialized && folderManager.FileItems != null)
                 {
                     SetEnabledStatus(true);
+                    FillDataSource(folderManager.FileItems);
                 }
                 else
                 {
@@ -39,11 +40,11 @@ namespace Compacter
             if (folderManager != null && folderManager.Initialized && folderManager.FileItems != null)
             {
                 folderManager.Analyze();
-                FillDataSource(folderManager.FileItems);
+                FillDataSource(folderManager.FileItems, true);
             }
         }
 
-        private void FillDataSource(IEnumerable<FileItem> files)
+        private void FillDataSource(IEnumerable<FileItem> files, bool analyzed = false)
         {
             AnalysisResult.ResultDataTable table = (AnalysisResult.ResultDataTable)resultBindingSource.DataSource;
             table.Rows.Clear();
@@ -54,6 +55,7 @@ namespace Compacter
                 row.Entropy = file.Entropy;
                 row.SizeOnDisk = file.SizeOnDisk;
                 row.Path = file.Path;
+                row.Analyzed = analyzed;
                 table.Rows.Add(row);
             }
         }
