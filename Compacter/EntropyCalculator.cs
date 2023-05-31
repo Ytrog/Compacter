@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,17 @@ namespace Compacter
     {
         public static double Calculate(FileInfo fileInfo)
         {
+            double entropy = -1;
+            try
+            {
+                uint[] count = CountBytes(fileInfo);
 
-            uint[] count = CountBytes(fileInfo);
-
-            double entropy = CalculateEntropy(fileInfo.Length, count);
+                entropy = CalculateEntropy(fileInfo.Length, count);
+            }
+            catch (IOException ioex)
+            {
+                Trace.WriteLine(ioex.Message);
+            }
 
             return entropy;
         }
@@ -54,22 +62,28 @@ namespace Compacter
         {
             uint[] byteCount = new uint[256]; // create an array with the count for each byte value (from 0x00 to 256)
 
-            // TODO count the bytes
-            // TODO error handling
             // TODO LATER measure performance and tune
-#warning no error handling 
-            using (var stream = fileInfo.OpenRead())
-            {
-                int currentByte = default;
-                do
-                {
-                    currentByte = stream.ReadByte();
-                    if (currentByte >= 0)
-                    {
-                        byteCount[currentByte]++;
-                    }
 
-                } while (currentByte != -1);
+            try
+            {
+                using (var stream = fileInfo.OpenRead())
+                {
+                    int currentByte = default;
+                    do
+                    {
+                        currentByte = stream.ReadByte();
+                        if (currentByte >= 0)
+                        {
+                            byteCount[currentByte]++;
+                        }
+
+                    } while (currentByte != -1);
+                }
+            }
+            catch (IOException ioex)
+            {
+                Trace.WriteLine(ioex.Message);
+                throw;
             }
 
             return byteCount;
