@@ -85,6 +85,7 @@
             // 
             // btnYes
             // 
+            btnYes.DialogResult = DialogResult.Yes;
             btnYes.Location = new Point(3, 3);
             btnYes.Name = "btnYes";
             btnYes.Size = new Size(75, 23);
@@ -94,6 +95,7 @@
             // 
             // btnNo
             // 
+            btnNo.DialogResult = DialogResult.No;
             btnNo.Location = new Point(84, 3);
             btnNo.Name = "btnNo";
             btnNo.Size = new Size(75, 23);

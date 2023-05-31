@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,8 +65,15 @@ namespace Compacter
 
         internal static void Compress(IWin32Window? owner)
         {
-            ScriptReview scriptReview = new ScriptReview(Path.GetFullPath(SCRIPT_PATH));
-            scriptReview.ShowDialog(owner);
+            var fullPath = Path.GetFullPath(SCRIPT_PATH);
+            ScriptReview scriptReview = new ScriptReview(fullPath);
+            var result = scriptReview.ShowDialog(owner);
+
+            if (result == DialogResult.Yes) 
+            {
+                ProcessStartInfo processStartInfo = new ProcessStartInfo() { FileName = SCRIPT_PATH, CreateNoWindow = false };
+                Process.Start(processStartInfo);
+            }
         }
     }
 }
