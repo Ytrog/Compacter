@@ -9,10 +9,15 @@ namespace Compacter
 {
     internal class FileItem
     {
+
+        const double PACKED_THRESHOLD = 6.5; // From Detect-It-Easy XBinary class
+
         public required string Path { get; init; }
         public bool Compressed { get; private set; }
         public long SizeOnDisk { get; private set; }
         public double Entropy { get; private set; }
+
+        public bool Packed { get; private set; }
 
         public void Analyze() 
         {
@@ -23,6 +28,8 @@ namespace Compacter
             Compressed = fileInfo.Attributes.HasFlag(FileAttributes.Compressed);
 
             Entropy = CalculateEntropy(fileInfo);
+
+            Packed = Entropy >= PACKED_THRESHOLD;
 
         }
 
