@@ -7,6 +7,7 @@
         private const string _pattern = "*.*";
         private List<FileItem>? _fileItems;
         public bool Initialized { get; private set; } = false;
+        public bool Analyzed { get; private set; }
         internal List<FileItem>? FileItems { get => _fileItems; set => _fileItems = value; }
 
         public FolderManager()
@@ -30,7 +31,7 @@
 
         internal void Analyze()
         {
-            
+            Analyzed = false;
             if (!Initialized || FileItems == null)
             {
                 throw new InvalidOperationException("Not initialized");
@@ -40,6 +41,7 @@
             {
                 fi.Analyze(); // TODO not in main thread
             }
+            Analyzed = true;
         }
     }
 }

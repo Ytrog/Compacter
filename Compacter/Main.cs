@@ -65,5 +65,14 @@ namespace Compacter
         {
             resultBindingSource.DataSource = new AnalysisResult.ResultDataTable();
         }
+
+        private void tsbCompress_Click(object sender, EventArgs e)
+        {
+            if (folderManager == null || !folderManager.Analyzed)
+            {
+                MessageBox.Show(this, "Please analyze the folder first", "Not Analyzed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+        }
     }
 }

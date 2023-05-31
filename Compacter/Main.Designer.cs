@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             toolStripContainer1 = new ToolStripContainer();
             dgvAnalysisResult = new DataGridView();
+            Analyzed = new DataGridViewCheckBoxColumn();
+            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Packed = new DataGridViewCheckBoxColumn();
+            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             resultBindingSource = new BindingSource(components);
             toolStrip1 = new ToolStrip();
             tsbOpen = new ToolStripButton();
@@ -39,12 +45,6 @@
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
-            Analyzed = new DataGridViewCheckBoxColumn();
-            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Packed = new DataGridViewCheckBoxColumn();
-            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
@@ -86,61 +86,6 @@
             dgvAnalysisResult.RowTemplate.Height = 25;
             dgvAnalysisResult.Size = new Size(800, 425);
             dgvAnalysisResult.TabIndex = 0;
-            // 
-            // resultBindingSource
-            // 
-            resultBindingSource.DataMember = "Result";
-            resultBindingSource.DataSource = typeof(AnalysisResult);
-            // 
-            // toolStrip1
-            // 
-            toolStrip1.Dock = DockStyle.None;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress });
-            toolStrip1.Location = new Point(3, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(226, 25);
-            toolStrip1.TabIndex = 0;
-            // 
-            // tsbOpen
-            // 
-            tsbOpen.Image = (Image)resources.GetObject("tsbOpen.Image");
-            tsbOpen.ImageTransparentColor = Color.Magenta;
-            tsbOpen.Name = "tsbOpen";
-            tsbOpen.Size = new Size(92, 22);
-            tsbOpen.Text = "Open Folder";
-            tsbOpen.ToolTipText = "Open Folder";
-            tsbOpen.Click += tsbOpen_Click;
-            // 
-            // toolStripSeparator1
-            // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
-            // 
-            // tsbAnalyze
-            // 
-            tsbAnalyze.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            tsbAnalyze.Enabled = false;
-            tsbAnalyze.Image = (Image)resources.GetObject("tsbAnalyze.Image");
-            tsbAnalyze.ImageTransparentColor = Color.Magenta;
-            tsbAnalyze.Name = "tsbAnalyze";
-            tsbAnalyze.Size = new Size(52, 22);
-            tsbAnalyze.Text = "Analyze";
-            tsbAnalyze.Click += tsbAnalyze_Click;
-            // 
-            // tsbCompress
-            // 
-            tsbCompress.DisplayStyle = ToolStripItemDisplayStyle.Text;
-            tsbCompress.Enabled = false;
-            tsbCompress.Image = (Image)resources.GetObject("tsbCompress.Image");
-            tsbCompress.ImageTransparentColor = Color.Magenta;
-            tsbCompress.Name = "tsbCompress";
-            tsbCompress.Size = new Size(64, 22);
-            tsbCompress.Text = "Compress";
-            // 
-            // folderBrowserDialog1
-            // 
-            folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
-            folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // Analyzed
             // 
@@ -184,6 +129,62 @@
             compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
             compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
             compressedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // resultBindingSource
+            // 
+            resultBindingSource.DataMember = "Result";
+            resultBindingSource.DataSource = typeof(AnalysisResult);
+            // 
+            // toolStrip1
+            // 
+            toolStrip1.Dock = DockStyle.None;
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress });
+            toolStrip1.Location = new Point(3, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(257, 25);
+            toolStrip1.TabIndex = 0;
+            // 
+            // tsbOpen
+            // 
+            tsbOpen.Image = (Image)resources.GetObject("tsbOpen.Image");
+            tsbOpen.ImageTransparentColor = Color.Magenta;
+            tsbOpen.Name = "tsbOpen";
+            tsbOpen.Size = new Size(92, 22);
+            tsbOpen.Text = "Open Folder";
+            tsbOpen.ToolTipText = "Open Folder";
+            tsbOpen.Click += tsbOpen_Click;
+            // 
+            // toolStripSeparator1
+            // 
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
+            // 
+            // tsbAnalyze
+            // 
+            tsbAnalyze.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbAnalyze.Enabled = false;
+            tsbAnalyze.Image = (Image)resources.GetObject("tsbAnalyze.Image");
+            tsbAnalyze.ImageTransparentColor = Color.Magenta;
+            tsbAnalyze.Name = "tsbAnalyze";
+            tsbAnalyze.Size = new Size(52, 22);
+            tsbAnalyze.Text = "Analyze";
+            tsbAnalyze.Click += tsbAnalyze_Click;
+            // 
+            // tsbCompress
+            // 
+            tsbCompress.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbCompress.Enabled = false;
+            tsbCompress.Image = (Image)resources.GetObject("tsbCompress.Image");
+            tsbCompress.ImageTransparentColor = Color.Magenta;
+            tsbCompress.Name = "tsbCompress";
+            tsbCompress.Size = new Size(64, 22);
+            tsbCompress.Text = "Compress";
+            tsbCompress.Click += tsbCompress_Click;
+            // 
+            // folderBrowserDialog1
+            // 
+            folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
+            folderBrowserDialog1.ShowNewFolderButton = false;
             // 
             // Main
             // 
