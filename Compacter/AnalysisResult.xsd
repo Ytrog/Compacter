@@ -19,6 +19,7 @@
               <xs:element name="Path" msprop:Generator_ColumnPropNameInTable="PathColumn" msprop:Generator_ColumnPropNameInRow="Path" msprop:Generator_UserColumnName="Path" msprop:Generator_ColumnVarNameInTable="columnPath" type="xs:string" minOccurs="0" />
               <xs:element name="SizeOnDisk" msprop:Generator_ColumnPropNameInTable="SizeOnDiskColumn" msprop:Generator_ColumnPropNameInRow="SizeOnDisk" msprop:Generator_UserColumnName="SizeOnDisk" msprop:Generator_ColumnVarNameInTable="columnSizeOnDisk" type="xs:long" minOccurs="0" />
               <xs:element name="Entropy" msprop:Generator_ColumnPropNameInTable="EntropyColumn" msprop:Generator_ColumnPropNameInRow="Entropy" msprop:Generator_UserColumnName="Entropy" msprop:Generator_ColumnVarNameInTable="columnEntropy" type="xs:double" minOccurs="0" />
+              <xs:element name="Packed" msprop:Generator_ColumnPropNameInRow="Packed" msprop:Generator_ColumnPropNameInTable="PackedColumn" msprop:Generator_ColumnVarNameInTable="columnPacked" msprop:Generator_UserColumnName="Packed" type="xs:boolean" minOccurs="0" />
               <xs:element name="Compressed" msprop:Generator_ColumnPropNameInTable="CompressedColumn" msprop:Generator_ColumnPropNameInRow="Compressed" msprop:Generator_UserColumnName="Compressed" msprop:Generator_ColumnVarNameInTable="columnCompressed" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
