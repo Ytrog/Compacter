@@ -56,6 +56,7 @@ namespace Compacter
                 row.SizeOnDisk = file.SizeOnDisk;
                 row.Path = file.Path;
                 row.Analyzed = analyzed;
+                row.Packed = file.Packed;
                 table.Rows.Add(row);
             }
         }
