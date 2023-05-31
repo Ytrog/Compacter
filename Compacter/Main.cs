@@ -85,6 +85,8 @@ namespace Compacter
         private void Compressor_ScriptCreated(object? sender, string e)
         {
             Compressor.Compress(this);
+            folderManager.Analyze();
+            FillDataSource(folderManager.FileItems, true);
         }
     }
 }

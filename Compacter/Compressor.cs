@@ -72,7 +72,13 @@ namespace Compacter
             if (result == DialogResult.Yes) 
             {
                 ProcessStartInfo processStartInfo = new ProcessStartInfo() { FileName = SCRIPT_PATH, CreateNoWindow = false };
-                Process.Start(processStartInfo);
+                Process p = new Process
+                {
+                    StartInfo = processStartInfo,
+                    //PriorityClass = ProcessPriorityClass.Normal,
+                };
+                p.Start();
+                p.WaitForExit();
             }
         }
     }
