@@ -77,8 +77,14 @@ namespace Compacter
             {
                 SetEnabledStatus(false);
                 Compressor compressor = new Compressor(folderManager);
-                compressor.Compress();
+                compressor.ScriptCreated += Compressor_ScriptCreated;
+                compressor.CreateScript();
             }
+        }
+
+        private void Compressor_ScriptCreated(object? sender, string e)
+        {
+            Compressor.Compress(this);
         }
     }
 }
