@@ -73,6 +73,12 @@ namespace Compacter
                 MessageBox.Show(this, "Please analyze the folder first", "Not Analyzed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            else
+            {
+                SetEnabledStatus(false);
+                Compressor compressor = new Compressor(folderManager);
+                compressor.Compress();
+            }
         }
     }
 }
