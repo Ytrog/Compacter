@@ -44,13 +44,15 @@ namespace Compacter
                 // determine if it is an executable
                 if (extension.Equals("exe") || extension.Equals("dll"))
                 {
-                    sb.AppendLine($"compact /C /EXE:LZX {file.Path}");
+                    sb.AppendLine($"compact /C /EXE:LZX \"{file.Path}\"");
                 }
                 else
                 {
-                    sb.AppendLine($"compact /C {file.Path}");
+                    sb.AppendLine($"compact /C \"{file.Path}\"");
                 }
             }
+
+            sb.AppendLine("pause");
 
             string script = sb.ToString();
 
