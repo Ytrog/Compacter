@@ -12,7 +12,7 @@ namespace Compacter
     {
         private const string SCRIPT_PATH = "CompacterScript.cmd";
 
-        public event EventHandler<string> ScriptCreated;
+        public event EventHandler<string>? ScriptCreated;
 
         public Compressor(FolderManager folderManager)
         {
@@ -55,7 +55,7 @@ namespace Compacter
 
             File.WriteAllText(SCRIPT_PATH, script);
 
-            EventHandler<string> raiseEvent = ScriptCreated; // temporary copy to prevent race conditions
+            EventHandler<string>? raiseEvent = ScriptCreated; // temporary copy to prevent race conditions
 
             if (raiseEvent != null)
             {

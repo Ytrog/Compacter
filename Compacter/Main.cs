@@ -68,7 +68,7 @@ namespace Compacter
 
         private void tsbCompress_Click(object sender, EventArgs e)
         {
-            if (folderManager == null || !folderManager.Analyzed)
+            if (folderManager == null || !folderManager.Analyzed) // TODO just disable button?
             {
                 MessageBox.Show(this, "Please analyze the folder first", "Not Analyzed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -84,6 +84,10 @@ namespace Compacter
 
         private void Compressor_ScriptCreated(object? sender, string e)
         {
+            if (folderManager == null || folderManager.FileItems == null)
+            {
+                throw new InvalidOperationException("folderManager is null or in an invalid state");
+            }
             Compressor.Compress(this);
             folderManager.Analyze();
             FillDataSource(folderManager.FileItems, true);
