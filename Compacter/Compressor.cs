@@ -35,6 +35,7 @@ namespace Compacter
         {
             ImmutableArray<FileItem> files = GetCompressableFiles();
             StringBuilder sb = new StringBuilder();
+            sb.AppendLine("ECHO Starting"); // Add this so even with no files the script is valid and doesn't crash
 
             foreach (FileItem file in files)
             {
