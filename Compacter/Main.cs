@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Compacter
 {
     public partial class Main : Form
@@ -44,8 +46,16 @@ namespace Compacter
         {
             if (folderManager != null && folderManager.Initialized && folderManager.FileItems != null)
             {
-                folderManager.Analyze();
-                FillDataSource(folderManager.FileItems, true);
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (o, e) =>
+                {
+                    folderManager.Analyze();
+                };
+                worker.RunWorkerCompleted += (o, e) =>
+                {
+                    FillDataSource(folderManager.FileItems, true);
+                };
+                worker.RunWorkerAsync();
             }
         }
 
