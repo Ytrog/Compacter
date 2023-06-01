@@ -17,6 +17,7 @@ namespace Compacter
             if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
             {
                 folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
+                StatusFolder.Text = folderBrowserDialog1.SelectedPath;
                 folderManager.Init();
                 if (folderManager.Initialized && folderManager.FileItems != null)
                 {

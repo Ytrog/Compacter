@@ -76,7 +76,6 @@ namespace Compacter
                 Process p = new Process
                 {
                     StartInfo = processStartInfo,
-                    //PriorityClass = ProcessPriorityClass.Normal,
                 };
                 p.Start();
                 p.WaitForExit();
