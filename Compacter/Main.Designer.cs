@@ -45,21 +45,30 @@
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            statusStrip1 = new StatusStrip();
+            StatusFolder = new ToolStripStatusLabel();
+            tsProgress = new ToolStripProgressBar();
+            toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAnalysisResult).BeginInit();
             ((System.ComponentModel.ISupportInitialize)resultBindingSource).BeginInit();
             toolStrip1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStripContainer1
             // 
             // 
+            // toolStripContainer1.BottomToolStripPanel
+            // 
+            toolStripContainer1.BottomToolStripPanel.Controls.Add(statusStrip1);
+            // 
             // toolStripContainer1.ContentPanel
             // 
             toolStripContainer1.ContentPanel.Controls.Add(dgvAnalysisResult);
-            toolStripContainer1.ContentPanel.Size = new Size(800, 425);
+            toolStripContainer1.ContentPanel.Size = new Size(800, 403);
             toolStripContainer1.Dock = DockStyle.Fill;
             toolStripContainer1.Location = new Point(0, 0);
             toolStripContainer1.Name = "toolStripContainer1";
@@ -84,7 +93,7 @@
             dgvAnalysisResult.Name = "dgvAnalysisResult";
             dgvAnalysisResult.ReadOnly = true;
             dgvAnalysisResult.RowTemplate.Height = 25;
-            dgvAnalysisResult.Size = new Size(800, 425);
+            dgvAnalysisResult.Size = new Size(800, 403);
             dgvAnalysisResult.TabIndex = 0;
             // 
             // Analyzed
@@ -141,7 +150,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(257, 25);
+            toolStrip1.Size = new Size(226, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -186,6 +195,26 @@
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             folderBrowserDialog1.ShowNewFolderButton = false;
             // 
+            // statusStrip1
+            // 
+            statusStrip1.Dock = DockStyle.None;
+            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusFolder, tsProgress });
+            statusStrip1.Location = new Point(0, 0);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.TabIndex = 0;
+            // 
+            // StatusFolder
+            // 
+            StatusFolder.Name = "StatusFolder";
+            StatusFolder.Size = new Size(113, 17);
+            StatusFolder.Text = "Please open a folder";
+            // 
+            // tsProgress
+            // 
+            tsProgress.Name = "tsProgress";
+            tsProgress.Size = new Size(100, 16);
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -195,6 +224,8 @@
             Name = "Main";
             Text = "Compacter";
             Load += Main_Load;
+            toolStripContainer1.BottomToolStripPanel.ResumeLayout(false);
+            toolStripContainer1.BottomToolStripPanel.PerformLayout();
             toolStripContainer1.ContentPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -204,6 +235,8 @@
             ((System.ComponentModel.ISupportInitialize)resultBindingSource).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -224,5 +257,8 @@
         private DataGridViewTextBoxColumn entropyDataGridViewTextBoxColumn;
         private DataGridViewCheckBoxColumn Packed;
         private DataGridViewCheckBoxColumn compressedDataGridViewCheckBoxColumn;
+        private StatusStrip statusStrip1;
+        private ToolStripStatusLabel StatusFolder;
+        private ToolStripProgressBar tsProgress;
     }
 }

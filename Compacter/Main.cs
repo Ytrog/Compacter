@@ -54,7 +54,9 @@ namespace Compacter
                 worker.RunWorkerCompleted += (o, e) =>
                 {
                     FillDataSource(folderManager.FileItems, true);
+                    tsProgress.Style = ProgressBarStyle.Continuous; // disable
                 };
+                tsProgress.Style = ProgressBarStyle.Marquee;
                 worker.RunWorkerAsync();
             }
         }
