@@ -42,7 +42,7 @@ namespace Compacter
                 var extension = Path.GetExtension(file.Path);
 
                 // determine if it is an executable
-                if (extension.Equals("exe") || extension.Equals("dll"))
+                if (extension.Equals(".exe") || extension.Equals(".dll"))
                 {
                     sb.AppendLine($"compact /C /EXE:LZX \"{file.Path}\"");
                 }
