@@ -37,6 +37,11 @@ namespace Compacter
 
         private void tsbAnalyze_Click(object sender, EventArgs e)
         {
+            Analyze();
+        }
+
+        private void Analyze()
+        {
             if (folderManager != null && folderManager.Initialized && folderManager.FileItems != null)
             {
                 folderManager.Analyze();
@@ -89,8 +94,7 @@ namespace Compacter
                 throw new InvalidOperationException("folderManager is null or in an invalid state");
             }
             Compressor.Compress(this);
-            folderManager.Analyze();
-            FillDataSource(folderManager.FileItems, true);
+            Analyze();
         }
     }
 }
