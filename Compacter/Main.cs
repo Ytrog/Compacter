@@ -55,11 +55,25 @@ namespace Compacter
                 worker.RunWorkerCompleted += (o, e) =>
                 {
                     FillDataSource(folderManager.FileItems, true);
-                    tsProgress.Style = ProgressBarStyle.Continuous; // disable
+                    MarkBusy(false); // disable
                 };
-                tsProgress.Style = ProgressBarStyle.Marquee;
+                MarkBusy(true);
                 worker.RunWorkerAsync();
             }
+        }
+
+        private void MarkBusy(bool busy)
+        {
+            if (busy)
+            {
+                tsProgress.Style = ProgressBarStyle.Marquee;
+            }
+            else
+            {
+                tsProgress.Style = ProgressBarStyle.Continuous;
+                
+            }
+            Application.UseWaitCursor = busy;
         }
 
         private void FillDataSource(IEnumerable<FileItem> files, bool analyzed = false)
