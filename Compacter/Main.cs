@@ -50,7 +50,7 @@ namespace Compacter
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += (o, e) =>
                 {
-                    folderManager.Analyze();
+                    folderManager.Analyze(tsbParallel.Checked);
                 };
                 worker.RunWorkerCompleted += (o, e) =>
                 {
@@ -71,7 +71,7 @@ namespace Compacter
             else
             {
                 tsProgress.Style = ProgressBarStyle.Continuous;
-                
+
             }
             Application.UseWaitCursor = busy;
         }

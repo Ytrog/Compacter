@@ -31,6 +31,9 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             toolStripContainer1 = new ToolStripContainer();
+            statusStrip1 = new StatusStrip();
+            StatusFolder = new ToolStripStatusLabel();
+            tsProgress = new ToolStripProgressBar();
             dgvAnalysisResult = new DataGridView();
             Analyzed = new DataGridViewCheckBoxColumn();
             pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -44,18 +47,16 @@
             toolStripSeparator1 = new ToolStripSeparator();
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
+            tsbParallel = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
-            statusStrip1 = new StatusStrip();
-            StatusFolder = new ToolStripStatusLabel();
-            tsProgress = new ToolStripProgressBar();
             toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
             toolStripContainer1.SuspendLayout();
+            statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAnalysisResult).BeginInit();
             ((System.ComponentModel.ISupportInitialize)resultBindingSource).BeginInit();
             toolStrip1.SuspendLayout();
-            statusStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // toolStripContainer1
@@ -79,6 +80,26 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             toolStripContainer1.TopToolStripPanel.Controls.Add(toolStrip1);
+            // 
+            // statusStrip1
+            // 
+            statusStrip1.Dock = DockStyle.None;
+            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusFolder, tsProgress });
+            statusStrip1.Location = new Point(0, 0);
+            statusStrip1.Name = "statusStrip1";
+            statusStrip1.Size = new Size(800, 22);
+            statusStrip1.TabIndex = 0;
+            // 
+            // StatusFolder
+            // 
+            StatusFolder.Name = "StatusFolder";
+            StatusFolder.Size = new Size(113, 17);
+            StatusFolder.Text = "Please open a folder";
+            // 
+            // tsProgress
+            // 
+            tsProgress.Name = "tsProgress";
+            tsProgress.Size = new Size(100, 16);
             // 
             // dgvAnalysisResult
             // 
@@ -147,10 +168,10 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress, tsbParallel });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(226, 25);
+            toolStrip1.Size = new Size(328, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -190,30 +211,21 @@
             tsbCompress.Text = "Compress";
             tsbCompress.Click += tsbCompress_Click;
             // 
+            // tsbParallel
+            // 
+            tsbParallel.BackColor = SystemColors.Control;
+            tsbParallel.CheckOnClick = true;
+            tsbParallel.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbParallel.Image = (Image)resources.GetObject("tsbParallel.Image");
+            tsbParallel.ImageTransparentColor = Color.Magenta;
+            tsbParallel.Name = "tsbParallel";
+            tsbParallel.Size = new Size(71, 22);
+            tsbParallel.Text = "Use parallel";
+            // 
             // folderBrowserDialog1
             // 
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             folderBrowserDialog1.ShowNewFolderButton = false;
-            // 
-            // statusStrip1
-            // 
-            statusStrip1.Dock = DockStyle.None;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusFolder, tsProgress });
-            statusStrip1.Location = new Point(0, 0);
-            statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(800, 22);
-            statusStrip1.TabIndex = 0;
-            // 
-            // StatusFolder
-            // 
-            StatusFolder.Name = "StatusFolder";
-            StatusFolder.Size = new Size(113, 17);
-            StatusFolder.Text = "Please open a folder";
-            // 
-            // tsProgress
-            // 
-            tsProgress.Name = "tsProgress";
-            tsProgress.Size = new Size(100, 16);
             // 
             // Main
             // 
@@ -231,12 +243,12 @@
             toolStripContainer1.TopToolStripPanel.PerformLayout();
             toolStripContainer1.ResumeLayout(false);
             toolStripContainer1.PerformLayout();
+            statusStrip1.ResumeLayout(false);
+            statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAnalysisResult).EndInit();
             ((System.ComponentModel.ISupportInitialize)resultBindingSource).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
-            statusStrip1.ResumeLayout(false);
-            statusStrip1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -260,5 +272,6 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel StatusFolder;
         private ToolStripProgressBar tsProgress;
+        private ToolStripButton tsbParallel;
     }
 }
