@@ -29,7 +29,7 @@
             else { throw new InvalidOperationException(); }
         }
 
-        internal void Analyze()
+        internal void Analyze(bool parallel = false)
         {
             Analyzed = false;
             if (!Initialized || FileItems == null)
@@ -37,9 +37,16 @@
                 throw new InvalidOperationException("Not initialized");
             }
 
-            foreach (var fi in FileItems)
+            if (parallel)
             {
-                fi.Analyze(); // TODO not in main thread
+                Parallel.ForEach(FileItems, fi => fi.Analyze());
+            }
+            else
+            {
+                foreach (var fi in FileItems)
+                {
+                    fi.Analyze();
+                } 
             }
             Analyzed = true;
         }
