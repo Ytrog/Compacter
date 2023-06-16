@@ -1,4 +1,5 @@
 using Compacter;
+using System.Diagnostics;
 
 namespace Compacter.Test
 {
@@ -37,6 +38,64 @@ namespace Compacter.Test
             double actual = EntropyCalculator.CalculateEntropy(count.Length, count);
 
             Assert.AreEqual(expected, actual, 0.01);
+        }
+        [TestMethod]
+        [TestCategory("Performance")]
+        public void PerformanceCalculateEntropySequential()
+        {
+#if DEBUG
+            Assert.Inconclusive("Do not benchmark in Debug mode");
+#endif
+
+            const int runs = 1_000_000;
+            uint[] count = new uint[256];
+
+            for (int i = 0; i < count.Length; i++)
+            {
+                count[i] = 1;
+            }
+
+            // JIT warmup
+            EntropyCalculator.CalculateEntropy(count.Length, count);
+
+            // actual test
+            Stopwatch sw = Stopwatch.StartNew();
+            for (int i = 0; i < runs; i++)
+            {
+                EntropyCalculator.CalculateEntropy(count.Length, count);
+            }
+            sw.Stop();
+
+            Trace.WriteLine("Elapsed: " + sw.Elapsed.ToString());
+        }
+
+        [TestMethod]
+        [TestCategory("Performance")]
+        public void PerformanceCalculateEntropyParallel()
+        {
+#if DEBUG
+            Assert.Inconclusive("Do not benchmark in Debug mode");
+#endif
+            const int runs = 1_000_000;
+            uint[] count = new uint[256];
+
+            for (int i = 0; i < count.Length; i++)
+            {
+                count[i] = 1;
+            }
+
+            // JIT warmup
+            EntropyCalculator.CalculateEntropy(count.Length, count);
+
+            // actual test
+            Stopwatch sw = Stopwatch.StartNew();
+
+            Parallel.For(0, runs, i => EntropyCalculator.CalculateEntropy(count.Length, count));
+
+            sw.Stop();
+
+            Trace.WriteLine("Elapsed: " + sw.Elapsed.ToString());
+
         }
 
         /// <summary>
