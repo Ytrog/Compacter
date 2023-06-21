@@ -1,4 +1,5 @@
 # Compacter
+
 Basic functionality:
 
 1. You can select a folder
@@ -6,7 +7,3 @@ Basic functionality:
 3. It then compresses normal files through NTFS compression and executables (.exe and .dll) through LZX compression using a script.
 
 ## FAQ
-
-### Why is the program named compacter, but the repository named compacter 2?
-
-Compacter is already a GitHub repository I have, so the name clashed.
