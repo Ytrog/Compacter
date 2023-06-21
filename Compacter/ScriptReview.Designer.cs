@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScriptReview));
             flowLayoutPanel1 = new FlowLayoutPanel();
             rtbBanner = new RichTextBox();
             tbScript = new TextBox();
@@ -109,6 +110,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 537);
             Controls.Add(flowLayoutPanel1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ScriptReview";
             Text = "Review Script";
             Load += ScriptReview_Load;
