@@ -66,7 +66,7 @@ namespace Compacter
             }
         }
 
-        internal static void Compress(IWin32Window? owner)
+        internal static bool Compress(IWin32Window? owner)
         {
             var fullPath = Path.GetFullPath(SCRIPT_PATH);
             ScriptReview scriptReview = new ScriptReview(fullPath);
@@ -81,7 +81,9 @@ namespace Compacter
                 };
                 p.Start();
                 p.WaitForExit();
+                return true;
             }
+            return false;
         }
     }
 }
