@@ -74,6 +74,7 @@ namespace Compacter
 
             }
             Application.UseWaitCursor = busy;
+            dgvAnalysisResult.Cursor = this.Cursor; // otherwise the cursor will remain the wait cursor
         }
 
         private void FillDataSource(IEnumerable<FileItem> files, bool analyzed = false)
