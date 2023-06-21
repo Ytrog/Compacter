@@ -120,9 +120,13 @@ namespace Compacter
             {
                 throw new InvalidOperationException("folderManager is null or in an invalid state");
             }
-            Compressor.Compress(this);
+            bool compressed = Compressor.Compress(this);
             SetEnabledStatus(true);
-            Analyze();
+
+            if (compressed)
+            {
+                Analyze(); 
+            }
         }
     }
 }
