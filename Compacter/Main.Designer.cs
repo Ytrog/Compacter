@@ -171,7 +171,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress, tsbParallel });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(328, 25);
+            toolStrip1.Size = new Size(297, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -233,6 +233,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(toolStripContainer1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Main";
             Text = "Compacter";
             Load += Main_Load;
