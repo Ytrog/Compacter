@@ -6,10 +6,15 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\Compressor.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="AnalysisResult.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Compressor.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +46,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>
