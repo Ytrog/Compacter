@@ -1,4 +1,6 @@
-﻿namespace Compacter
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Compacter
 {
     internal class FolderManager
     {
@@ -15,6 +17,7 @@
 
         }
 
+        [MemberNotNull(nameof(FileItems))]
         public void Init()
         {
             if (!string.IsNullOrWhiteSpace(Path) && System.IO.Path.Exists(Path))

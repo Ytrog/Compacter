@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Compacter
 {
@@ -19,23 +20,36 @@ namespace Compacter
                 folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
                 StatusFolder.Text = folderBrowserDialog1.SelectedPath;
                 folderManager.Init();
-                if (folderManager.Initialized && folderManager.FileItems != null)
+                if (IsInitialized(folderManager))
                 {
-                    SetEnabledStatus(true);
+                    SetEnabledStatus();
                     FillDataSource(folderManager.FileItems);
                 }
                 else
                 {
-                    SetEnabledStatus(false);
+                    SetEnabledStatus();
                     throw new Exception($"{folderManager.Path} could not be enumerated");
                 }
             }
         }
 
-        private void SetEnabledStatus(bool enable)
+        /// <summary>
+        /// Set the enabled status of buttons
+        /// </summary>
+        private void SetEnabledStatus()
         {
-            tsbAnalyze.Enabled = enable;
-            tsbCompress.Enabled = enable;
+            tsbAnalyze.Enabled = IsInitialized(folderManager);
+            tsbCompress.Enabled = IsAnalyzed;
+        }
+
+        /// <summary>
+        /// Determine if <paramref name="fm"/> is initialized
+        /// </summary>
+        /// <param name="fm"></param>
+        /// <returns></returns>
+        private bool IsInitialized([NotNullWhen(true)]FolderManager? fm)
+        {
+            return fm is not null && fm.Initialized && fm.FileItems is not null;
         }
 
         private void tsbAnalyze_Click(object sender, EventArgs e)
@@ -56,6 +70,7 @@ namespace Compacter
                 {
                     FillDataSource(folderManager.FileItems, true);
                     MarkBusy(false); // disable
+                    SetEnabledStatus();
                 };
                 MarkBusy(true);
                 worker.RunWorkerAsync();
@@ -112,14 +127,14 @@ namespace Compacter
 
         private void tsbCompress_Click(object sender, EventArgs e)
         {
-            if (folderManager == null || !folderManager.Analyzed) // TODO just disable button?
+            if (folderManager == null || !folderManager.Analyzed) 
             {
                 MessageBox.Show(this, "Please analyze the folder first", "Not Analyzed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
             {
-                SetEnabledStatus(false);
+                SetEnabledStatus();
                 Compressor compressor = new Compressor(folderManager);
                 compressor.ScriptCreated += Compressor_ScriptCreated;
                 compressor.CreateScript();
@@ -133,7 +148,7 @@ namespace Compacter
                 throw new InvalidOperationException("folderManager is null or in an invalid state");
             }
             bool compressed = Compressor.Compress(this);
-            SetEnabledStatus(true);
+            SetEnabledStatus();
 
             if (compressed)
             {
