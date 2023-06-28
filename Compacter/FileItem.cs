@@ -12,6 +12,7 @@ namespace Compacter
 
         const double PACKED_THRESHOLD = 6.5; // From Detect-It-Easy XBinary class
 
+        #region Properties
         public required string Path { get; init; }
         public bool Compressed { get; private set; }
         public long SizeOnDisk { get; private set; }
@@ -20,19 +21,32 @@ namespace Compacter
         public bool Packed { get; private set; }
         public bool Analyzed { get; private set; }
 
+        public bool ErrorOccurred { get; private set; }
+
+        #endregion
         public void Analyze() 
         {
-            FileInfo fileInfo = new FileInfo(Path);
+            ErrorOccurred = false; // reset
 
-            SizeOnDisk = GetSizeOnDisk(fileInfo);
+            try
+            {
+                FileInfo fileInfo = new FileInfo(Path);
 
-            Compressed = fileInfo.Attributes.HasFlag(FileAttributes.Compressed);
+                SizeOnDisk = GetSizeOnDisk(fileInfo);
 
-            Entropy = CalculateEntropy(fileInfo);
+                Compressed = fileInfo.Attributes.HasFlag(FileAttributes.Compressed);
 
-            Packed = Entropy >= PACKED_THRESHOLD;
+                Entropy = CalculateEntropy(fileInfo);
 
-            Analyzed = true;
+                Packed = Entropy >= PACKED_THRESHOLD;
+
+                Analyzed = true;
+            }
+            catch (Exception)
+            {
+                ErrorOccurred = true;
+                Analyzed = false;
+            }
 
         }
 

@@ -90,6 +90,17 @@ namespace Compacter
                 row.Path = file.Path;
                 row.Analyzed = file.Analyzed;
                 row.Packed = file.Packed;
+                row.ErrorOccurred = file.ErrorOccurred;
+
+                if (row.ErrorOccurred)
+                {
+                    row.RowError = "File could not be opened";
+                }
+                else 
+                {
+                    row.ClearErrors(); 
+                }
+
                 table.Rows.Add(row);
             }
         }

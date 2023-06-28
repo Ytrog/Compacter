@@ -291,6 +291,8 @@ namespace Compacter {
             
             private global::System.Data.DataColumn columnCompressed;
             
+            private global::System.Data.DataColumn columnErrorOccurred;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public ResultDataTable() {
@@ -374,6 +376,14 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ErrorOccurredColumn {
+                get {
+                    return this.columnErrorOccurred;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -409,7 +419,7 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ResultRow AddResultRow(bool Analyzed, string Path, long SizeOnDisk, double Entropy, bool Packed, bool Compressed) {
+            public ResultRow AddResultRow(bool Analyzed, string Path, long SizeOnDisk, double Entropy, bool Packed, bool Compressed, bool ErrorOccurred) {
                 ResultRow rowResultRow = ((ResultRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Analyzed,
@@ -417,7 +427,8 @@ namespace Compacter {
                         SizeOnDisk,
                         Entropy,
                         Packed,
-                        Compressed};
+                        Compressed,
+                        ErrorOccurred};
                 rowResultRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowResultRow);
                 return rowResultRow;
@@ -446,6 +457,7 @@ namespace Compacter {
                 this.columnEntropy = base.Columns["Entropy"];
                 this.columnPacked = base.Columns["Packed"];
                 this.columnCompressed = base.Columns["Compressed"];
+                this.columnErrorOccurred = base.Columns["ErrorOccurred"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -463,6 +475,8 @@ namespace Compacter {
                 base.Columns.Add(this.columnPacked);
                 this.columnCompressed = new global::System.Data.DataColumn("Compressed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompressed);
+                this.columnErrorOccurred = new global::System.Data.DataColumn("ErrorOccurred", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnErrorOccurred);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -701,6 +715,22 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool ErrorOccurred {
+                get {
+                    try {
+                        return ((bool)(this[this.tableResult.ErrorOccurredColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ErrorOccurred\' in table \'Result\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResult.ErrorOccurredColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsAnalyzedNull() {
                 return this.IsNull(this.tableResult.AnalyzedColumn);
             }
@@ -769,6 +799,18 @@ namespace Compacter {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetCompressedNull() {
                 this[this.tableResult.CompressedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsErrorOccurredNull() {
+                return this.IsNull(this.tableResult.ErrorOccurredColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetErrorOccurredNull() {
+                this[this.tableResult.ErrorOccurredColumn] = global::System.Convert.DBNull;
             }
         }
         
