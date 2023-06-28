@@ -20,9 +20,10 @@ namespace Compacter
                 folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
                 StatusFolder.Text = folderBrowserDialog1.SelectedPath;
                 folderManager.Init();
-                if (IsInitialized(folderManager))
+                if (IsInitialized(folderManager)) // this ensures foldermanager and its FileItems are not null
                 {
                     SetEnabledStatus();
+                    tsbParallel.Checked = folderManager.FileItems.Count > 15;
                     FillDataSource(folderManager.FileItems);
                 }
                 else
@@ -47,7 +48,7 @@ namespace Compacter
         /// </summary>
         /// <param name="fm"></param>
         /// <returns></returns>
-        private bool IsInitialized([NotNullWhen(true)]FolderManager? fm)
+        private bool IsInitialized([NotNullWhen(true)] FolderManager? fm)
         {
             return fm is not null && fm.Initialized && fm.FileItems is not null;
         }
@@ -127,7 +128,7 @@ namespace Compacter
 
         private void tsbCompress_Click(object sender, EventArgs e)
         {
-            if (folderManager == null || !folderManager.Analyzed) 
+            if (folderManager == null || !folderManager.Analyzed)
             {
                 MessageBox.Show(this, "Please analyze the folder first", "Not Analyzed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

@@ -8,6 +8,7 @@ namespace Compacter
         private DirectoryInfo? _folder;
         private const string _pattern = "*.*";
         private List<FileItem>? _fileItems;
+        [MemberNotNullWhen(true, nameof(FileItems))]
         public bool Initialized { get; private set; } = false;
         public bool Analyzed { get; private set; }
         internal List<FileItem>? FileItems { get => _fileItems; set => _fileItems = value; }
