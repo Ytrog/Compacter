@@ -48,7 +48,7 @@
                     fi.Analyze();
                 } 
             }
-            Analyzed = true;
+            Analyzed = true; // this is used for checking if compress button should be enabled
         }
     }
 }

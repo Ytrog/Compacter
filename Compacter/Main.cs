@@ -88,7 +88,7 @@ namespace Compacter
                 row.Entropy = file.Entropy;
                 row.SizeOnDisk = file.SizeOnDisk;
                 row.Path = file.Path;
-                row.Analyzed = analyzed;
+                row.Analyzed = file.Analyzed;
                 row.Packed = file.Packed;
                 table.Rows.Add(row);
             }
