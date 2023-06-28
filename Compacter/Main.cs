@@ -96,9 +96,9 @@ namespace Compacter
                 {
                     row.RowError = file.ErrorMessage;
                 }
-                else 
+                else
                 {
-                    row.ClearErrors(); 
+                    row.ClearErrors();
                 }
 
                 table.Rows.Add(row);
@@ -137,8 +137,33 @@ namespace Compacter
 
             if (compressed)
             {
-                Analyze(); 
+                Analyze();
             }
+        }
+
+        private void tsbShowCompressible_CheckedChanged(object sender, EventArgs e)
+        {
+            FilterTable(tsbShowCompressible.Checked);
+        }
+
+        private void FilterTable(bool onlyCompressible)
+        {
+            if (IsAnalyzed()) 
+            {
+                if (onlyCompressible)
+                {
+                    resultBindingSource.Filter = "analyzed = true AND packed = false AND compressed = false";
+                }
+                else
+                {
+                    resultBindingSource.RemoveFilter();
+                }
+            }
+        }
+
+        private bool IsAnalyzed()
+        {
+            return folderManager != null && folderManager.Analyzed;
         }
     }
 }
