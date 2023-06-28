@@ -23,6 +23,8 @@ namespace Compacter
 
         public bool ErrorOccurred { get; private set; }
 
+        public string ErrorMessage { get; private set; } = string.Empty;
+
         #endregion
         public void Analyze() 
         {
@@ -42,10 +44,11 @@ namespace Compacter
 
                 Analyzed = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 ErrorOccurred = true;
                 Analyzed = false;
+                ErrorMessage = e.Message;
             }
 
         }

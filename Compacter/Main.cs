@@ -94,7 +94,7 @@ namespace Compacter
 
                 if (row.ErrorOccurred)
                 {
-                    row.RowError = "File could not be opened";
+                    row.RowError = file.ErrorMessage;
                 }
                 else 
                 {
