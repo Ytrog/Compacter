@@ -18,6 +18,7 @@ namespace Compacter
         public double Entropy { get; private set; }
 
         public bool Packed { get; private set; }
+        public bool Analyzed { get; private set; }
 
         public void Analyze() 
         {
@@ -30,6 +31,8 @@ namespace Compacter
             Entropy = CalculateEntropy(fileInfo);
 
             Packed = Entropy >= PACKED_THRESHOLD;
+
+            Analyzed = true;
 
         }
 
