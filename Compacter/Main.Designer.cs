@@ -48,6 +48,7 @@
             tsbAnalyze = new ToolStripButton();
             tsbCompress = new ToolStripButton();
             tsbParallel = new ToolStripButton();
+            tsbShowCompressible = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
             toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             toolStripContainer1.ContentPanel.SuspendLayout();
@@ -168,10 +169,10 @@
             // toolStrip1
             // 
             toolStrip1.Dock = DockStyle.None;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress, tsbParallel });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress, tsbParallel, tsbShowCompressible });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(297, 25);
+            toolStrip1.Size = new Size(443, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -221,6 +222,17 @@
             tsbParallel.Name = "tsbParallel";
             tsbParallel.Size = new Size(71, 22);
             tsbParallel.Text = "Use parallel";
+            // 
+            // tsbShowCompressible
+            // 
+            tsbShowCompressible.CheckOnClick = true;
+            tsbShowCompressible.DisplayStyle = ToolStripItemDisplayStyle.Text;
+            tsbShowCompressible.Image = (Image)resources.GetObject("tsbShowCompressible.Image");
+            tsbShowCompressible.ImageTransparentColor = Color.Magenta;
+            tsbShowCompressible.Name = "tsbShowCompressible";
+            tsbShowCompressible.Size = new Size(115, 22);
+            tsbShowCompressible.Text = "Show Compressible";
+            tsbShowCompressible.CheckedChanged += tsbShowCompressible_CheckedChanged;
             // 
             // folderBrowserDialog1
             // 
@@ -274,5 +286,6 @@
         private ToolStripStatusLabel StatusFolder;
         private ToolStripProgressBar tsProgress;
         private ToolStripButton tsbParallel;
+        private ToolStripButton tsbShowCompressible;
     }
 }
