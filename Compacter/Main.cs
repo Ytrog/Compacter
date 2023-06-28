@@ -148,7 +148,7 @@ namespace Compacter
 
         private void FilterTable(bool onlyCompressible)
         {
-            if (IsAnalyzed()) 
+            if (IsAnalyzed) 
             {
                 if (onlyCompressible)
                 {
@@ -161,9 +161,6 @@ namespace Compacter
             }
         }
 
-        private bool IsAnalyzed()
-        {
-            return folderManager != null && folderManager.Analyzed;
-        }
+        private bool IsAnalyzed => folderManager != null && folderManager.Analyzed;
     }
 }
