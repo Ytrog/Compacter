@@ -148,7 +148,7 @@ namespace Compacter
 
         private void FilterTable(bool onlyCompressible)
         {
-            if (IsAnalyzed) 
+            if (IsAnalyzed)
             {
                 if (onlyCompressible)
                 {
