@@ -50,6 +50,7 @@
             tsbParallel = new ToolStripButton();
             tsbShowCompressible = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
+            StatusAmount = new ToolStripStatusLabel();
             toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -85,7 +86,7 @@
             // statusStrip1
             // 
             statusStrip1.Dock = DockStyle.None;
-            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusFolder, tsProgress });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { StatusFolder, tsProgress, StatusAmount });
             statusStrip1.Location = new Point(0, 0);
             statusStrip1.Name = "statusStrip1";
             statusStrip1.Size = new Size(800, 22);
@@ -172,7 +173,7 @@
             toolStrip1.Items.AddRange(new ToolStripItem[] { tsbOpen, toolStripSeparator1, tsbAnalyze, tsbCompress, tsbParallel, tsbShowCompressible });
             toolStrip1.Location = new Point(3, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(443, 25);
+            toolStrip1.Size = new Size(412, 25);
             toolStrip1.TabIndex = 0;
             // 
             // tsbOpen
@@ -239,6 +240,11 @@
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             folderBrowserDialog1.ShowNewFolderButton = false;
             // 
+            // StatusAmount
+            // 
+            StatusAmount.Name = "StatusAmount";
+            StatusAmount.Size = new Size(0, 17);
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -287,5 +293,6 @@
         private ToolStripProgressBar tsProgress;
         private ToolStripButton tsbParallel;
         private ToolStripButton tsbShowCompressible;
+        private ToolStripStatusLabel StatusAmount;
     }
 }
