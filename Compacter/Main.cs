@@ -119,6 +119,13 @@ namespace Compacter
 
                 table.Rows.Add(row);
             }
+
+            UpdateAmount();
+        }
+
+        private void UpdateAmount()
+        {
+            StatusAmount.Text = $"Amount: {resultBindingSource.Count}";
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -175,6 +182,8 @@ namespace Compacter
                     resultBindingSource.RemoveFilter();
                 }
             }
+
+            UpdateAmount();
         }
 
         private bool IsAnalyzed => folderManager != null && folderManager.Analyzed;
