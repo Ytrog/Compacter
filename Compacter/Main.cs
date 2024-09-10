@@ -130,6 +130,11 @@ namespace Compacter
 
         private void Main_Load(object sender, EventArgs e)
         {
+            if (Environment.IsPrivilegedProcess)
+            {
+                this.Text = $"{this.Text} – Administator";
+            }
+
             resultBindingSource.DataSource = new AnalysisResult.ResultDataTable();
         }
 
