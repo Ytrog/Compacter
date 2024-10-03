@@ -67,11 +67,12 @@ namespace Compacter
             try
             {
                 using (var stream = fileInfo.OpenRead())
+                using(var buffer = new BufferedStream(stream))
                 {
                     int currentByte = default;
                     do
                     {
-                        currentByte = stream.ReadByte();
+                        currentByte = buffer.ReadByte(); // TODO hot path
                         if (currentByte >= 0)
                         {
                             byteCount[currentByte]++;
