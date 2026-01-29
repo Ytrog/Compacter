@@ -17,20 +17,25 @@ namespace Compacter
         {
             if (folderBrowserDialog1.ShowDialog(this) == DialogResult.OK)
             {
-                folderManager = new() { Path = folderBrowserDialog1.SelectedPath };
-                StatusFolder.Text = folderBrowserDialog1.SelectedPath;
-                folderManager.Init();
-                if (IsInitialized(folderManager)) // this ensures foldermanager and its FileItems are not null
-                {
-                    SetEnabledStatus();
-                    tsbParallel.Checked = folderManager.FileItems.Count > 15;
-                    FillDataSource(folderManager.FileItems);
-                }
-                else
-                {
-                    SetEnabledStatus();
-                    throw new Exception($"{folderManager.Path} could not be enumerated");
-                }
+                InitFolderManager(folderBrowserDialog1.SelectedPath);
+            }
+        }
+
+        private void InitFolderManager(string path)
+        {
+            folderManager = new() { Path = path };
+            StatusFolder.Text = path;
+            folderManager.Init();
+            if (IsInitialized(folderManager)) // this ensures foldermanager and its FileItems are not null
+            {
+                SetEnabledStatus();
+                tsbParallel.Checked = folderManager.FileItems.Count > 15;
+                FillDataSource(folderManager.FileItems);
+            }
+            else
+            {
+                SetEnabledStatus();
+                throw new Exception($"{folderManager.Path} could not be enumerated");
             }
         }
 
