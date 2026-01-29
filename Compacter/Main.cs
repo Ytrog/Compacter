@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Compacter
@@ -141,6 +142,13 @@ namespace Compacter
             }
 
             resultBindingSource.DataSource = new AnalysisResult.ResultDataTable();
+
+            string[] args = Environment.GetCommandLineArgs();
+            
+            if (args.Length == 2 && Path.Exists(args[1])) // has an argument passed
+            {
+                InitFolderManager(args[1]);
+            }
         }
 
         private void tsbCompress_Click(object sender, EventArgs e)
