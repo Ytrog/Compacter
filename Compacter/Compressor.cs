@@ -66,6 +66,17 @@ namespace Compacter
             }
         }
 
+        internal static void CleanupScript()
+        {
+            string fullPath = Path.GetFullPath(SCRIPT_PATH);
+
+            if (fullPath != null && File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+            
+        }
+
         internal static bool Compress(IWin32Window? owner)
         {
             var fullPath = Path.GetFullPath(SCRIPT_PATH);

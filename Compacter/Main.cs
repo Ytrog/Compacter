@@ -178,7 +178,9 @@ namespace Compacter
 
             if (compressed)
             {
+                Compressor.CleanupScript();
                 Analyze();
+
             }
         }
 
