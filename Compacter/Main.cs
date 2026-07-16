@@ -113,6 +113,7 @@ namespace Compacter
                 row.Analyzed = file.Analyzed;
                 row.Packed = file.Packed;
                 row.ErrorOccurred = file.ErrorOccurred;
+                row.SmallerThanBlock = file.SmallerThanBlock;
 
                 if (row.ErrorOccurred)
                 {
@@ -195,7 +196,7 @@ namespace Compacter
             {
                 if (onlyCompressible)
                 {
-                    resultBindingSource.Filter = "analyzed = true AND packed = false AND compressed = false";
+                    resultBindingSource.Filter = "analyzed = true AND packed = false AND compressed = false AND smallerthanblock = false";
                 }
                 else
                 {

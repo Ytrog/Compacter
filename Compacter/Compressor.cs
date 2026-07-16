@@ -28,7 +28,7 @@ namespace Compacter
                 throw new InvalidOperationException("Foldermanager not properly initialized");
             }
 
-            return FolderManager.FileItems.Where(f => f.Analyzed && !(f.Compressed || f.Packed || f.ErrorOccurred)).ToImmutableArray();
+            return FolderManager.FileItems.Where(f => f.Analyzed && !(f.Compressed || f.Packed || f.ErrorOccurred || f.SmallerThanBlock)).ToImmutableArray();
         }
 
         public void CreateScript()

@@ -34,13 +34,8 @@
             statusStrip1 = new StatusStrip();
             StatusFolder = new ToolStripStatusLabel();
             tsProgress = new ToolStripProgressBar();
+            StatusAmount = new ToolStripStatusLabel();
             dgvAnalysisResult = new DataGridView();
-            Analyzed = new DataGridViewCheckBoxColumn();
-            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Packed = new DataGridViewCheckBoxColumn();
-            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             resultBindingSource = new BindingSource(components);
             toolStrip1 = new ToolStrip();
             tsbOpen = new ToolStripButton();
@@ -50,7 +45,13 @@
             tsbParallel = new ToolStripButton();
             tsbShowCompressible = new ToolStripButton();
             folderBrowserDialog1 = new FolderBrowserDialog();
-            StatusAmount = new ToolStripStatusLabel();
+            Analyzed = new DataGridViewCheckBoxColumn();
+            pathDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            sizeOnDiskDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            entropyDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Packed = new DataGridViewCheckBoxColumn();
+            compressedDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+            SmallerThanBlock = new DataGridViewCheckBoxColumn();
             toolStripContainer1.BottomToolStripPanel.SuspendLayout();
             toolStripContainer1.ContentPanel.SuspendLayout();
             toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -103,64 +104,25 @@
             tsProgress.Name = "tsProgress";
             tsProgress.Size = new Size(100, 16);
             // 
+            // StatusAmount
+            // 
+            StatusAmount.Name = "StatusAmount";
+            StatusAmount.Size = new Size(0, 17);
+            // 
             // dgvAnalysisResult
             // 
             dgvAnalysisResult.AllowUserToAddRows = false;
             dgvAnalysisResult.AllowUserToDeleteRows = false;
             dgvAnalysisResult.AutoGenerateColumns = false;
             dgvAnalysisResult.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAnalysisResult.Columns.AddRange(new DataGridViewColumn[] { Analyzed, pathDataGridViewTextBoxColumn, sizeOnDiskDataGridViewTextBoxColumn, entropyDataGridViewTextBoxColumn, Packed, compressedDataGridViewCheckBoxColumn });
+            dgvAnalysisResult.Columns.AddRange(new DataGridViewColumn[] { Analyzed, pathDataGridViewTextBoxColumn, sizeOnDiskDataGridViewTextBoxColumn, entropyDataGridViewTextBoxColumn, Packed, compressedDataGridViewCheckBoxColumn, SmallerThanBlock });
             dgvAnalysisResult.DataSource = resultBindingSource;
             dgvAnalysisResult.Dock = DockStyle.Fill;
             dgvAnalysisResult.Location = new Point(0, 0);
             dgvAnalysisResult.Name = "dgvAnalysisResult";
             dgvAnalysisResult.ReadOnly = true;
-            dgvAnalysisResult.RowTemplate.Height = 25;
             dgvAnalysisResult.Size = new Size(800, 403);
             dgvAnalysisResult.TabIndex = 0;
-            // 
-            // Analyzed
-            // 
-            Analyzed.DataPropertyName = "Analyzed";
-            Analyzed.HeaderText = "Analyzed";
-            Analyzed.Name = "Analyzed";
-            Analyzed.ReadOnly = true;
-            // 
-            // pathDataGridViewTextBoxColumn
-            // 
-            pathDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
-            pathDataGridViewTextBoxColumn.HeaderText = "Path";
-            pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
-            pathDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sizeOnDiskDataGridViewTextBoxColumn
-            // 
-            sizeOnDiskDataGridViewTextBoxColumn.DataPropertyName = "SizeOnDisk";
-            sizeOnDiskDataGridViewTextBoxColumn.HeaderText = "SizeOnDisk";
-            sizeOnDiskDataGridViewTextBoxColumn.Name = "sizeOnDiskDataGridViewTextBoxColumn";
-            sizeOnDiskDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // entropyDataGridViewTextBoxColumn
-            // 
-            entropyDataGridViewTextBoxColumn.DataPropertyName = "Entropy";
-            entropyDataGridViewTextBoxColumn.HeaderText = "Entropy";
-            entropyDataGridViewTextBoxColumn.Name = "entropyDataGridViewTextBoxColumn";
-            entropyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Packed
-            // 
-            Packed.DataPropertyName = "Packed";
-            Packed.HeaderText = "Packed";
-            Packed.Name = "Packed";
-            Packed.ReadOnly = true;
-            // 
-            // compressedDataGridViewCheckBoxColumn
-            // 
-            compressedDataGridViewCheckBoxColumn.DataPropertyName = "Compressed";
-            compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
-            compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
-            compressedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // resultBindingSource
             // 
@@ -240,10 +202,57 @@
             folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
             folderBrowserDialog1.ShowNewFolderButton = false;
             // 
-            // StatusAmount
+            // Analyzed
             // 
-            StatusAmount.Name = "StatusAmount";
-            StatusAmount.Size = new Size(0, 17);
+            Analyzed.DataPropertyName = "Analyzed";
+            Analyzed.HeaderText = "Analyzed";
+            Analyzed.Name = "Analyzed";
+            Analyzed.ReadOnly = true;
+            // 
+            // pathDataGridViewTextBoxColumn
+            // 
+            pathDataGridViewTextBoxColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            pathDataGridViewTextBoxColumn.DataPropertyName = "Path";
+            pathDataGridViewTextBoxColumn.HeaderText = "Path";
+            pathDataGridViewTextBoxColumn.Name = "pathDataGridViewTextBoxColumn";
+            pathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sizeOnDiskDataGridViewTextBoxColumn
+            // 
+            sizeOnDiskDataGridViewTextBoxColumn.DataPropertyName = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.HeaderText = "SizeOnDisk";
+            sizeOnDiskDataGridViewTextBoxColumn.Name = "sizeOnDiskDataGridViewTextBoxColumn";
+            sizeOnDiskDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // entropyDataGridViewTextBoxColumn
+            // 
+            entropyDataGridViewTextBoxColumn.DataPropertyName = "Entropy";
+            entropyDataGridViewTextBoxColumn.HeaderText = "Entropy";
+            entropyDataGridViewTextBoxColumn.Name = "entropyDataGridViewTextBoxColumn";
+            entropyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Packed
+            // 
+            Packed.DataPropertyName = "Packed";
+            Packed.HeaderText = "Packed";
+            Packed.Name = "Packed";
+            Packed.ReadOnly = true;
+            // 
+            // compressedDataGridViewCheckBoxColumn
+            // 
+            compressedDataGridViewCheckBoxColumn.DataPropertyName = "Compressed";
+            compressedDataGridViewCheckBoxColumn.HeaderText = "Compressed";
+            compressedDataGridViewCheckBoxColumn.Name = "compressedDataGridViewCheckBoxColumn";
+            compressedDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // SmallerThanBlock
+            // 
+            SmallerThanBlock.DataPropertyName = "SmallerThanBlock";
+            SmallerThanBlock.HeaderText = "Smaller than block size";
+            SmallerThanBlock.Name = "SmallerThanBlock";
+            SmallerThanBlock.ReadOnly = true;
+            SmallerThanBlock.Resizable = DataGridViewTriState.True;
+            SmallerThanBlock.SortMode = DataGridViewColumnSortMode.Automatic;
             // 
             // Main
             // 
@@ -282,17 +291,18 @@
         private FolderBrowserDialog folderBrowserDialog1;
         private DataGridView dgvAnalysisResult;
         private BindingSource resultBindingSource;
-        private DataGridViewCheckBoxColumn Analyzed;
-        private DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn sizeOnDiskDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn entropyDataGridViewTextBoxColumn;
-        private DataGridViewCheckBoxColumn Packed;
-        private DataGridViewCheckBoxColumn compressedDataGridViewCheckBoxColumn;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel StatusFolder;
         private ToolStripProgressBar tsProgress;
         private ToolStripButton tsbParallel;
         private ToolStripButton tsbShowCompressible;
         private ToolStripStatusLabel StatusAmount;
+        private DataGridViewCheckBoxColumn Analyzed;
+        private DataGridViewTextBoxColumn pathDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn sizeOnDiskDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn entropyDataGridViewTextBoxColumn;
+        private DataGridViewCheckBoxColumn Packed;
+        private DataGridViewCheckBoxColumn compressedDataGridViewCheckBoxColumn;
+        private DataGridViewCheckBoxColumn SmallerThanBlock;
     }
 }

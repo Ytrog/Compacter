@@ -41,6 +41,8 @@ namespace Compacter {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [System.ObsoleteAttribute("This API supports obsolete formatter-based serialization. It should not be called" +
+            " or extended by application code.", DiagnosticId="SYSLIB0051")]
         protected AnalysisResult(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
@@ -291,6 +293,8 @@ namespace Compacter {
             
             private global::System.Data.DataColumn columnCompressed;
             
+            private global::System.Data.DataColumn columnSmallerThanBlock;
+            
             private global::System.Data.DataColumn columnErrorOccurred;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -321,6 +325,8 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [System.ObsoleteAttribute("This API supports obsolete formatter-based serialization. It should not be called" +
+                " or extended by application code.", DiagnosticId="SYSLIB0051")]
             protected ResultDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
@@ -376,6 +382,14 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SmallerThanBlockColumn {
+                get {
+                    return this.columnSmallerThanBlock;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public global::System.Data.DataColumn ErrorOccurredColumn {
                 get {
                     return this.columnErrorOccurred;
@@ -419,7 +433,7 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ResultRow AddResultRow(bool Analyzed, string Path, long SizeOnDisk, double Entropy, bool Packed, bool Compressed, bool ErrorOccurred) {
+            public ResultRow AddResultRow(bool Analyzed, string Path, long SizeOnDisk, double Entropy, bool Packed, bool Compressed, bool SmallerThanBlock, bool ErrorOccurred) {
                 ResultRow rowResultRow = ((ResultRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Analyzed,
@@ -428,6 +442,7 @@ namespace Compacter {
                         Entropy,
                         Packed,
                         Compressed,
+                        SmallerThanBlock,
                         ErrorOccurred};
                 rowResultRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowResultRow);
@@ -457,6 +472,7 @@ namespace Compacter {
                 this.columnEntropy = base.Columns["Entropy"];
                 this.columnPacked = base.Columns["Packed"];
                 this.columnCompressed = base.Columns["Compressed"];
+                this.columnSmallerThanBlock = base.Columns["SmallerThanBlock"];
                 this.columnErrorOccurred = base.Columns["ErrorOccurred"];
             }
             
@@ -475,6 +491,8 @@ namespace Compacter {
                 base.Columns.Add(this.columnPacked);
                 this.columnCompressed = new global::System.Data.DataColumn("Compressed", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCompressed);
+                this.columnSmallerThanBlock = new global::System.Data.DataColumn("SmallerThanBlock", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSmallerThanBlock);
                 this.columnErrorOccurred = new global::System.Data.DataColumn("ErrorOccurred", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnErrorOccurred);
             }
@@ -715,6 +733,22 @@ namespace Compacter {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool SmallerThanBlock {
+                get {
+                    try {
+                        return ((bool)(this[this.tableResult.SmallerThanBlockColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SmallerThanBlock\' in table \'Result\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableResult.SmallerThanBlockColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool ErrorOccurred {
                 get {
                     try {
@@ -799,6 +833,18 @@ namespace Compacter {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetCompressedNull() {
                 this[this.tableResult.CompressedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSmallerThanBlockNull() {
+                return this.IsNull(this.tableResult.SmallerThanBlockColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSmallerThanBlockNull() {
+                this[this.tableResult.SmallerThanBlockColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

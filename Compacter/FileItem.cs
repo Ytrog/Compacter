@@ -25,6 +25,11 @@ namespace Compacter
 
         public string ErrorMessage { get; private set; } = string.Empty;
 
+        /// <summary>
+        /// Returns true if smaller than a block on disk (don't compress if it is)
+        /// </summary>
+        public bool SmallerThanBlock { get; private set; }
+
         #endregion
         public void Analyze() 
         {
@@ -41,6 +46,10 @@ namespace Compacter
                 Entropy = CalculateEntropy(fileInfo);
 
                 Packed = Entropy >= PACKED_THRESHOLD;
+
+                long blockSize = GetBlockSize(fileInfo);
+
+                SmallerThanBlock = SizeOnDisk <= blockSize;
 
                 Analyzed = true;
             }
@@ -66,6 +75,13 @@ namespace Compacter
         private long GetSizeOnDisk(FileInfo fileInfo)
         {
             return Alphaleonis.Win32.Filesystem.File.GetCompressedSize(fileInfo.FullName);
+        }
+
+        private long GetBlockSize(FileInfo fileInfo)
+        {
+            Alphaleonis.Win32.Filesystem.DiskSpaceInfo diskSpaceInfo = new Alphaleonis.Win32.Filesystem.DiskSpaceInfo(System.IO.Path.GetPathRoot(fileInfo.FullName));
+            diskSpaceInfo.Refresh();
+            return diskSpaceInfo.ClusterSize;
         }
     }
 }
