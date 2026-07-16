@@ -49,7 +49,7 @@ namespace Compacter
 
                 long blockSize = GetBlockSize(fileInfo);
 
-                SmallerThanBlock = SizeOnDisk <= blockSize;
+                SmallerThanBlock = fileInfo.Length <= blockSize;
 
                 Analyzed = true;
             }
